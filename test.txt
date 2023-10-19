@@ -1,2 +1,0 @@
-Phong: 'hello, world!'
-World: 'hello, Phong!'
