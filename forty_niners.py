@@ -104,6 +104,31 @@ plays1_sf = plays_sf[plays_sf['gameId'].isin(games_sf.query('week==1')['gameId']
 
 
 #
+# Isolate 49ers offensive plays from week 1
+#
+
+# >>> plays1_sf_offense.head(4)
+#
+#          gameId  playId  ballCarrierId ballCarrierDisplayName                                    playDescription  ...  expectedPointsAdded                    foulName1  foulName2 foulNFLId1 foulNFLId2
+# 12   2022091102    3336          46331           Ross Dwelley  (11:55) (Shotgun) T.Lance pass short middle to...  ...             1.777092                          NaN        NaN        NaN        NaN
+# 254  2022091102     218          53432             Trey Lance  (11:53) T.Lance right guard to CHI 47 for 2 ya...  ...             0.959810                          NaN        NaN        NaN        NaN
+# 269  2022091102    1517          52433          Brandon Aiyuk  (7:26) (Shotgun) T.Lance pass short left to B....  ...            -1.537439  Offensive Pass Interference        NaN    52433.0        NaN
+# 446  2022091102    2352          46377         Jeffery Wilson  (12:04) J.Wilson right end to CHI 8 for 2 yard...  ...            -0.439247                          NaN        NaN        NaN        NaN
+#
+# [4 rows x 35 columns]
+
+plays1_sf_offense = plays1_sf[plays1_sf['ballCarrierId'].isin(players_sf_offense['nflId'])];
+
+
+#
+# Determine plays in which Trey Lance was the ball carrier
+#
+
+plays1_sf_lance = plays1_sf_offense[plays1_sf_offense['ballCarrierId'] == 53432];
+
+
+
+#
 # Identify week 1 tracking data for 49ers/Bears game
 #
 
